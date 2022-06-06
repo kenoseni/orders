@@ -1,0 +1,37 @@
+{
+  "name": "orders",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "NODE_ENV=development nodemon --ext js,graphql --exec babel-node src/index.js",
+    "pre": "babel src --out-dir dist --copy-files",
+    "start": "NODE_ENV=production npm run pre && node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kenoseni/orders.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kenoseni/orders/issues"
+  },
+  "homepage": "https://github.com/kenoseni/orders#readme",
+  "dependencies": {
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.18.2",
+    "@babel/node": "^7.17.10",
+    "@babel/preset-env": "^7.18.2",
+    "@graphql-yoga/node": "^2.9.0",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.0.1",
+    "graphql": "^16.5.0",
+    "graphql-import-node": "^0.0.5",
+    "jsonwebtoken": "^8.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
