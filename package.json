@@ -27,6 +27,8 @@
     "@graphql-yoga/node": "^2.9.0",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.1",
+    "firebase": "^9.8.2",
+    "firebase-admin": "^10.2.0",
     "graphql": "^16.5.0",
     "graphql-import-node": "^0.0.5",
     "jsonwebtoken": "^8.5.1"
