@@ -2,7 +2,12 @@ import { createServer } from "@graphql-yoga/node";
 import "graphql-import-node";
 import * as schema from "./schema/schema.graphql";
 import dotenv from "dotenv";
-import { db, auth } from "./firebase";
+import { db, auth } from "./firebase/firebase-admin";
+import {
+  clientAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from "./firebase/firebase-client";
 import { Mutation } from "./resolvers/Mutation";
 import { Query } from "./resolvers/Query";
 
@@ -17,6 +22,9 @@ const server = createServer({
     return {
       db,
       auth,
+      clientAuth,
+      signInWithEmailAndPassword,
+      createUserWithEmailAndPassword,
       req,
     };
   },

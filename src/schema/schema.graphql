@@ -12,6 +12,11 @@ input CreateUserInput {
   phone: String!
 }
 
+input SigninUserInput {
+  email: String!
+  password: String!
+}
+
 type AuthPayload {
   user: User!
   token: String!
@@ -23,4 +28,5 @@ type Query {
 
 type Mutation {
   register(data: CreateUserInput!): AuthPayload!
+  login(data: SigninUserInput!): AuthPayload!
 }

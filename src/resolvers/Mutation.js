@@ -29,4 +29,30 @@ export const Mutation = {
       token,
     };
   },
+  login: async (_, args, { clientAuth, signInWithEmailAndPassword }, info) => {
+    const { email, password } = args.data;
+    const userCredential = await signInWithEmailAndPassword(
+      clientAuth,
+      email,
+      password
+    ).catch((error) => {
+      if (error.code === "auth/network-request-failed") {
+        handleError("Network connection error");
+      }
+      handleError("Invalid user credentials");
+    });
+    const user = {
+      uid: userCredential.user.uid,
+      email: userCredential.user.email,
+      phone: userCredential.user.phoneNumber,
+      name: userCredential.user.displayName,
+    };
+
+    const token = userCredential.user.getIdToken();
+
+    return {
+      user,
+      token,
+    };
+  },
 };

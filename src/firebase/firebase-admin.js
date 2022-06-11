@@ -1,6 +1,6 @@
 import admin from "firebase-admin";
 import dotenv from "dotenv";
-import serviceAccount from "./serviceAccountKey.json";
+import serviceAccount from "../serviceAccountKey.json";
 
 dotenv.config({ path: ".env" });
 
