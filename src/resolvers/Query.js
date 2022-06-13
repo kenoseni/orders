@@ -39,6 +39,31 @@ export const Query = {
       count,
     };
   },
+
+  getCustomerOrders: async (_, args, { req, db, auth }, info) => {
+    await verifyToken(req, auth).catch((error) => {
+      handleError(error.message);
+    });
+    const orders = [];
+
+    const { email } = args.data;
+
+    const ordersRef = db.collection("orders");
+
+    const allOrdersDocs = await ordersRef
+      .where("customer.email", "==", email)
+      .get()
+      .catch((error) => {
+        handleError(error.message);
+      });
+
+    allOrdersDocs.forEach((doc) => {
+      orders.push({ uid: doc.id, ...doc.data() });
+    });
+
+    return { orders };
+  },
+
   order: async (_, args, { req, db, auth }, info) => {
     await verifyToken(req, auth).catch((error) => {
       handleError(error.message);
