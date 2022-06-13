@@ -39,4 +39,34 @@ export const Query = {
       count,
     };
   },
+  order: async (_, args, { req, db, auth }, info) => {
+    await verifyToken(req, auth).catch((error) => {
+      handleError(error.message);
+    });
+
+    const { uid } = args.data;
+
+    const orderRef = db.collection("orders").doc(uid);
+
+    const orderDoc = await orderRef.get().catch((error) => {
+      handleError(error.message);
+    });
+
+    if (!orderDoc.exists) handleError("Document not found!");
+
+    const { title, address, bookingDate, customer } = orderDoc.data();
+
+    return {
+      uid,
+      title,
+      bookingDate,
+      address,
+      customer: {
+        uid: customer.uid,
+        name: customer.name,
+        phone: customer.phone,
+        email: customer.email,
+      },
+    };
+  },
 };

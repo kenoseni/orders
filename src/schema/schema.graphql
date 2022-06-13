@@ -53,7 +53,7 @@ input CreateOrderInput {
   title: String!
   address: AddressInput
 }
-input DeleteOrderInput {
+input OrderInput {
   uid: ID!
 }
 
@@ -64,11 +64,12 @@ input OrderLimitInput {
 
 type Query {
   orders(data: OrderLimitInput): Orders!
+  order(data: OrderInput!): OrderPayload!
 }
 
 type Mutation {
   register(data: CreateUserInput!): AuthPayload!
   login(data: SigninUserInput!): AuthPayload!
   createOrder(data: CreateOrderInput!): OrderPayload!
-  deleteOrder(data: DeleteOrderInput!): OrderPayload!
+  deleteOrder(data: OrderInput!): OrderPayload!
 }
