@@ -130,4 +130,32 @@ export const Mutation = {
       },
     };
   },
+  deleteCustomerOrders: async (_, args, { req, db, auth }, info) => {
+    await verifyToken(req, auth).catch((error) => {
+      handleError(error.message);
+    });
+
+    const { email } = args.data;
+    const orders = [];
+
+    const ordersRef = db.collection("orders");
+
+    const allOrdersDocs = await ordersRef
+      .where("customer.email", "==", email)
+      .get()
+      .catch((error) => {
+        handleError(error.message);
+      });
+
+    const batch = db.batch();
+
+    allOrdersDocs.forEach((doc) => {
+      orders.push({ uid: doc.id, ...doc.data() });
+      batch.delete(doc.ref);
+    });
+
+    await batch.commit();
+
+    return { orders };
+  },
 };

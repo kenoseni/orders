@@ -81,4 +81,5 @@ type Mutation {
   login(data: SigninUserInput!): AuthPayload!
   createOrder(data: CreateOrderInput!): OrderPayload!
   deleteOrder(data: OrderInput!): OrderPayload!
+  deleteCustomerOrders(data: EmailInput): CustomerOrders!
 }
