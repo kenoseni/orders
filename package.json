@@ -2,7 +2,7 @@
   "name": "orders",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "scr/index.js",
   "scripts": {
     "dev": "NODE_ENV=development nodemon --ext js,graphql --exec babel-node src/index.js",
     "build": "babel src --out-dir dist --copy-files",
