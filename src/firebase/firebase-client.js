@@ -8,6 +8,10 @@ import firebaseConfig from "./firebaseConfig";
 
 const clientApp = initializeApp(firebaseConfig);
 
-export const clientAuth = getAuth(clientApp);
+const clientAuth = getAuth(clientApp);
 
-export { signInWithEmailAndPassword, createUserWithEmailAndPassword };
+export {
+  clientAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+};

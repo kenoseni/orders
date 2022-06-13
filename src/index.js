@@ -6,7 +6,6 @@ import { db, auth } from "./firebase/firebase-admin";
 import {
   clientAuth,
   signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
 } from "./firebase/firebase-client";
 import { Mutation } from "./resolvers/Mutation";
 import { Query } from "./resolvers/Query";
@@ -24,7 +23,6 @@ const server = createServer({
       auth,
       clientAuth,
       signInWithEmailAndPassword,
-      createUserWithEmailAndPassword,
       req,
     };
   },

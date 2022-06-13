@@ -9,5 +9,7 @@ const app = admin.initializeApp({
   databaseURL: process.env.DATABASE_URL,
 });
 
-export const auth = admin.auth(app);
-export const db = admin.database(app);
+const auth = admin.auth(app);
+const db = admin.firestore();
+
+export { auth, db };
