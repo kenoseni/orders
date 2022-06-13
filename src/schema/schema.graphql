@@ -44,9 +44,12 @@ input AddressInput {
   zip: String!
 }
 
-input OrderInput {
+input CreateOrderInput {
   title: String!
   address: AddressInput
+}
+input DeleteOrderInput {
+  uid: ID!
 }
 
 type Query {
@@ -56,5 +59,6 @@ type Query {
 type Mutation {
   register(data: CreateUserInput!): AuthPayload!
   login(data: SigninUserInput!): AuthPayload!
-  createOrder(data: OrderInput!): OrderPayload!
+  createOrder(data: CreateOrderInput!): OrderPayload!
+  deleteOrder(data: DeleteOrderInput!): OrderPayload!
 }

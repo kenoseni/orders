@@ -71,6 +71,7 @@ export const Mutation = {
       ...args.data,
       bookingDate,
       customer: {
+        uid: customer.uid,
         email: customer.email,
         phone: customer.phoneNumber,
         name: customer.displayName,
@@ -87,6 +88,44 @@ export const Mutation = {
     return {
       uid: response.id,
       ...order,
+    };
+  },
+  deleteOrder: async (parent, args, { req, db, auth }, info) => {
+    const customerId = await verifyToken(req, auth).catch((error) => {
+      handleError(error.message);
+    });
+
+    const { uid } = args.data;
+
+    const orderRef = db.collection("orders").doc(uid);
+
+    const orderDoc = await orderRef.get();
+
+    if (!orderDoc.exists) handleError("Document not found!");
+
+    if (customerId !== orderDoc.data().customer.uid)
+      handleError("You have no permission to delete this order");
+
+    await db
+      .collection("orders")
+      .doc(uid)
+      .delete()
+      .catch((error) => {
+        handleError(error.message);
+      });
+
+    const { title, address, bookingDate, customer } = orderDoc.data();
+
+    return {
+      uid,
+      title,
+      bookingDate,
+      address,
+      customer: {
+        name: customer.name,
+        phone: customer.phone,
+        email: customer.email,
+      },
     };
   },
 };
