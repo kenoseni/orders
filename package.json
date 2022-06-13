@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "NODE_ENV=development nodemon --ext js,graphql --exec babel-node src/index.js",
     "build": "babel src --out-dir dist --copy-files",
-    "start": "NODE_ENV=production node dist/index.js"
+    "start": "NODE_ENV=production npm run build && node dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
     "@graphql-yoga/node": "^2.9.0",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.1",
+    "express": "^4.18.1",
     "firebase": "^9.8.2",
     "firebase-admin": "^10.2.0",
     "graphql": "^16.5.0",
