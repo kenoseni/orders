@@ -18,11 +18,16 @@ type Address {
 }
 
 type OrderPayload {
-  uid: ID!
-  title: String!
-  bookingDate: Float!
-  address: Address!
-  customer: User!
+  uid: ID
+  title: String
+  bookingDate: Float
+  address: Address
+  customer: User
+}
+
+type Orders {
+  orders: [OrderPayload!]
+  count: Int!
 }
 
 input CreateUserInput {
@@ -52,8 +57,13 @@ input DeleteOrderInput {
   uid: ID!
 }
 
+input OrderLimitInput {
+  page: Int
+  limit: Int
+}
+
 type Query {
-  user: User!
+  orders(data: OrderLimitInput): Orders!
 }
 
 type Mutation {

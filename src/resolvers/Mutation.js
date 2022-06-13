@@ -56,7 +56,7 @@ export const Mutation = {
       token,
     };
   },
-  createOrder: async (parent, args, { req, db, auth }, info) => {
+  createOrder: async (_, args, { req, db, auth }, info) => {
     const customerId = await verifyToken(req, auth).catch((error) => {
       handleError(error.message);
     });
@@ -90,7 +90,7 @@ export const Mutation = {
       ...order,
     };
   },
-  deleteOrder: async (parent, args, { req, db, auth }, info) => {
+  deleteOrder: async (_, args, { req, db, auth }, info) => {
     const customerId = await verifyToken(req, auth).catch((error) => {
       handleError(error.message);
     });
@@ -99,7 +99,9 @@ export const Mutation = {
 
     const orderRef = db.collection("orders").doc(uid);
 
-    const orderDoc = await orderRef.get();
+    const orderDoc = await orderRef.get().catch((error) => {
+      handleError(error.message);
+    });
 
     if (!orderDoc.exists) handleError("Document not found!");
 
