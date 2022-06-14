@@ -105,9 +105,6 @@ export const Mutation = {
 
     if (!orderDoc.exists) handleError("Document not found!");
 
-    if (customerId !== orderDoc.data().customer.uid)
-      handleError("You have no permission to delete this order");
-
     await db
       .collection("orders")
       .doc(uid)

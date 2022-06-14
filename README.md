@@ -4,6 +4,13 @@ Orders
 
 Admin has functionality to `register a user`, `login` `create an order`, `delete an order` `delete orders for a specific customer` `get all orders` `get all orders for a specific customer` `get a single order`
 
+## Assumptions made
+
+1. The user creating an order can only use a user id to do so gotten from his token
+2. Booking data were not passed as arguments also to prevent inputing past dates or future dates and validating for those. the booking dates were generated as the order were made
+3. Register functionality is for adding another user
+4. The validation to check if a user was the one that created a resource before deletion was ignored. So far you have a valid token you can delete any resource
+
 ## Installation
 
 To run locally, use the command below to install all dependencies
