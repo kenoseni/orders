@@ -13,11 +13,6 @@ export const Mutation = {
       .catch((error) => {
         handleError(error.message);
       });
-    const token = await auth
-      .createCustomToken(userCredential.uid)
-      .catch((error) => {
-        handleError(error.message);
-      });
 
     const user = {
       uid: userCredential.uid,
@@ -27,7 +22,6 @@ export const Mutation = {
     };
     return {
       user,
-      token,
     };
   },
   login: async (_, args, { clientAuth, signInWithEmailAndPassword }, info) => {

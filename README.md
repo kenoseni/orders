@@ -7,9 +7,10 @@ Admin has functionality to `register a user`, `login` `create an order`, `delete
 ## Assumptions made
 
 1. The user creating an order can only use a user id to do so gotten from his token
-2. Booking data were not passed as arguments also to prevent inputing past dates or future dates and validating for those. the booking dates were generated as the order were made
+2. bookingDate was not passed as arguments also to prevent inputing past dates or future dates and validating for those. the booking dates were generated as the order were made
 3. Register functionality is for adding another user
 4. The validation to check if a user was the one that created a resource before deletion was ignored. So far you have a valid token you can delete any resource
+5. Pagination will be ignored if no arguments are passed to fetch all orders, but if the right arguments are passed, pagination is used.
 
 ## Installation
 
@@ -50,7 +51,6 @@ register(data: {
       email
       phone
     }
-    token
   }
 ```
 

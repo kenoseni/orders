@@ -5,9 +5,13 @@ type User {
   phone: String!
 }
 
-type AuthPayload {
+type LoginAuthPayload {
   user: User!
   token: String!
+}
+
+type RegisterAuthPayload {
+  user: User!
 }
 
 type Address {
@@ -77,8 +81,8 @@ type Query {
 }
 
 type Mutation {
-  register(data: CreateUserInput!): AuthPayload!
-  login(data: SigninUserInput!): AuthPayload!
+  register(data: CreateUserInput!): RegisterAuthPayload!
+  login(data: SigninUserInput!): LoginAuthPayload!
   createOrder(data: CreateOrderInput!): OrderPayload!
   deleteOrder(data: OrderInput!): OrderPayload!
   deleteCustomerOrders(data: EmailInput): CustomerOrders!
